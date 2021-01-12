@@ -1,1 +1,74 @@
-<p>login works!</p>
+<mat-card
+  class="login-form"
+  *ngIf="requiresNewPassword == false; else confirmPassword"
+>
+  <form (submit)="doSubmit()">
+    <div>
+      <div id="form-title">Log In</div>
+      <mat-form-field class="inputs">
+        <mat-label>Username</mat-label>
+        <input
+          matInput
+          #message
+          maxlength="50"
+          placeholder="Enter username"
+          [(ngModel)]="username"
+          name="username"
+          id="username"
+          type="text"
+          required
+        />
+        <mat-hint align="end">{{ message.value.length }} / 50</mat-hint>
+      </mat-form-field>
+    </div>
+    <div>
+      <mat-form-field class="inputs">
+        <mat-label>Password</mat-label>
+        <input
+          matInput
+          #pass
+          maxlength="50"
+          placeholder="Enter password"
+          [(ngModel)]="password"
+          id="password"
+          type="text"
+          name="password"
+          required
+        />
+        <mat-hint align="start">Do Not Share Your Password!</mat-hint>
+        <mat-hint align="end">{{ pass.value.length }} / 50</mat-hint>
+      </mat-form-field>
+    </div>
+    <button mat-raised-button color="primary" class="submit-button">
+      Submit
+    </button>
+  </form>
+</mat-card>
+
+<ng-template #confirmPassword>
+  <mat-card class="login-form-confirm">
+    <form (submit)="doConfirm()">
+      <div>
+        <div id="form-title">Enter Your New Password</div>
+        <mat-form-field class="inputs">
+          <mat-label>Enter New Password</mat-label>
+          <input
+            matInput
+            #newPass
+            maxlength="50"
+            [(ngModel)]="newPassword"
+            id="newPassword"
+            type="text"
+            name="newPassword"
+            required
+          />
+          <mat-hint align="start">Do Not Share Your Password!</mat-hint>
+          <mat-hint align="end">{{ newPass.value.length }} / 50</mat-hint>
+        </mat-form-field>
+      </div>
+      <button mat-raised-button color="primary" class="submit-button">
+        Confirm New Password
+      </button>
+    </form>
+  </mat-card>
+</ng-template>

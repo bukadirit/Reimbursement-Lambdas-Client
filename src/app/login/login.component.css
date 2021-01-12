@@ -1,0 +1,31 @@
+.login-form {
+  width: 60%;
+  height: 30%;
+  margin: auto;
+  margin-top: 10%;
+}
+
+.login-form-confirm {
+  width: 60%;
+  height: 15%;
+  margin: auto;
+  margin-top: 10%;
+}
+
+.inputs {
+  width: 100%;
+  margin-top: 4%;
+}
+
+.submit-button {
+  width: 100%;
+  margin-top: 2%;
+  margin-bottom: auto;
+}
+
+#form-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #673ab7;
+}
