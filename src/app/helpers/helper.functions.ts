@@ -1,36 +1,4 @@
 import { Reimbursement } from './../models/reimbursement';
-import { User } from '../models/user';
-
-export const getUser = () => {
-  let user: User = new User(
-    localStorage.getItem('email'),
-    localStorage.getItem('firstName'),
-    parseInt(localStorage.getItem('id')),
-    localStorage.getItem('lastName'),
-    null,
-    localStorage.getItem('role'),
-    localStorage.getItem('username')
-  );
-  return user;
-};
-
-export const setUser = (user: User) => {
-  localStorage.setItem('username', user.username);
-  localStorage.setItem('email', user.email);
-  localStorage.setItem('id', user.id.toString());
-  localStorage.setItem('role', user.role);
-  localStorage.setItem('firstName', user.firstName);
-  localStorage.setItem('lastName', user.lastName);
-};
-
-export const removeUser = () => {
-  localStorage.removeItem('username');
-  localStorage.removeItem('email');
-  localStorage.removeItem('id');
-  localStorage.removeItem('role');
-  localStorage.removeItem('firstName');
-  localStorage.removeItem('lastName');
-};
 
 export const validateLogin = (username: string, password: string) => {
   if (username != undefined && password != undefined) {
@@ -65,13 +33,14 @@ export const getErrors = (error: Response) => {
 };
 
 export const validateReimbForm = (reimb: Reimbursement) => {
-  if (
-    !reimb.amount ||
-    !reimb.description ||
-    reimb.type == undefined ||
-    reimb.type == null
-  )
-    return false;
-
-  return true;
+  if (reimb.amount && reimb.description && reimb.type) {
+    if (
+      reimb.amount.toString().length > 0 &&
+      reimb.description.length > 0 &&
+      reimb.type.length > 0
+    ) {
+      return true;
+    }
+  }
+  return false;
 };

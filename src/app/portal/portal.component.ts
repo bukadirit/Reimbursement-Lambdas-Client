@@ -1,7 +1,5 @@
 import { AwsUser } from './../models/user';
 import { AuthService } from '../services/auth.service';
-import { CognitoUser } from 'amazon-cognito-identity-js';
-import { getUser } from './../helpers/helper.functions';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';

@@ -15,8 +15,8 @@ export interface AttributeForm {
 
 export class Attributes {
   constructor(
-    public email?: string,
-    public phone_number?: string,
+    public email: string,
+    public phone_number: string,
     public sub?: string
   ) {}
 }

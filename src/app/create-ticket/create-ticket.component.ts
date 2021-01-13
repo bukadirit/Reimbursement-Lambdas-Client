@@ -1,14 +1,12 @@
-import { Attributes } from './../models/user';
+import { Attributes, User } from './../models/user';
 import { AuthService } from './../services/auth.service';
-import { validateReimbForm } from './../helpers/helper.functions';
+import { validateReimbForm, getErrors } from './../helpers/helper.functions';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
-import { getErrors } from '../helpers/helper.functions';
 import { ImageDialogComponent } from '../image-dialog/image-dialog.component';
 import { Reimbursement } from '../models/reimbursement';
-import { User } from '../models/user';
 import { ReimbursementService } from '../services/reimbursement.service';
 
 @Component({
@@ -17,12 +15,12 @@ import { ReimbursementService } from '../services/reimbursement.service';
   styleUrls: ['./create-ticket.component.css'],
 })
 export class CreateTicketComponent implements OnInit {
-  public newImage: any;
-  public amount: number;
-  public description: string;
   private confirm: boolean = false;
   private user: User = new User();
-  public reimb: Reimbursement;
+  private reimb: Reimbursement;
+  public newImage: any = null;
+  public amount: number;
+  public description: string;
   public selectedType: any;
   public types = [
     { value: 'Lodging', viewValue: 'Lodging' },
@@ -30,6 +28,7 @@ export class CreateTicketComponent implements OnInit {
     { value: 'Food', viewValue: 'Food' },
     { value: 'Other', viewValue: 'Other' },
   ];
+
   constructor(
     private snackBar: MatSnackBar,
     public dialog: MatDialog,
@@ -47,49 +46,47 @@ export class CreateTicketComponent implements OnInit {
       })
       .catch((err) => console.log(err));
   }
-  onSubmit() {
-    this.prepareReimb();
-  }
 
-  // onSubmit() {
-  //   if (!this.newImage) {
-  //     if (this.confirm) {
-  //       if (this.prepareReimb()) {
-  //         this.service.postReimbursementWithNoReceipt(this.reimb).subscribe(
-  //           (response) => {
-  //             this.openSnackBar('The Request Has Been Submitted!');
-  //             this.router.navigate(['/portal']);
-  //           },
-  //           (error: Response) => {
-  //             const errMsg = getErrors(error);
-  //             this.openSnackBar(errMsg);
-  //           }
-  //         );
-  //       } else {
-  //         this.router.navigate(['/create-ticket']);
-  //         this.openSnackBar('Please Fill out All Required Fields');
-  //       }
-  //     } else {
-  //       this.openDialog();
-  //     }
-  //   } else {
-  //     if (this.prepareReimb()) {
-  //       this.service.postReimbursement(this.reimb, this.newImage).subscribe(
-  //         (response) => {
-  //           this.openSnackBar('The Request Has Been Submitted!');
-  //           this.router.navigate(['/portal']);
-  //         },
-  //         (error: Response) => {
-  //           const errMsg = getErrors(error);
-  //           this.openSnackBar(errMsg);
-  //         }
-  //       );
-  //     } else {
-  //       this.router.navigate(['/create-ticket']);
-  //       this.openSnackBar('Please Fill out All Required Fields');
-  //     }
-  //   }
-  // }
+  onSubmit() {
+    if (this.newImage == null) {
+      if (this.confirm) {
+        if (this.prepareReimb()) {
+          this.service.postReimbursement(this.reimb).subscribe(
+            (response) => {
+              this.openSnackBar('The Request Has Been Submitted!');
+              this.router.navigate(['/portal']);
+            },
+            (error: Response) => {
+              const errMsg = getErrors(error);
+              this.openSnackBar(errMsg);
+            }
+          );
+        } else {
+          this.confirm = false;
+          this.router.navigate(['/create-ticket']);
+          this.openSnackBar('Please Fill out All Required Fields');
+        }
+      } else {
+        this.openDialog();
+      }
+    } else {
+      if (this.prepareReimb()) {
+        this.service.postReimbursement(this.reimb).subscribe(
+          (response) => {
+            this.openSnackBar('The Request Has Been Submitted!');
+            this.router.navigate(['/portal']);
+          },
+          (error: Response) => {
+            const errMsg = getErrors(error);
+            this.openSnackBar(errMsg);
+          }
+        );
+      } else {
+        this.router.navigate(['/create-ticket']);
+        this.openSnackBar('Please Fill out All Required Fields');
+      }
+    }
+  }
 
   openDialog() {
     const ref = this.dialog.open(ImageDialogComponent, {
@@ -112,7 +109,7 @@ export class CreateTicketComponent implements OnInit {
       new Date(Date.now()),
       null,
       this.description,
-      this.newImage[0],
+      this.newImage == null ? null : this.newImage[0],
       'Pending',
       this.selectedType,
       this.user.attributes.sub,
@@ -123,8 +120,7 @@ export class CreateTicketComponent implements OnInit {
       null,
       null
     );
-    console.log(this.reimb);
-    //return validateReimbForm(this.reimb);
+    return validateReimbForm(this.reimb);
   }
 
   openSnackBar(msg: string) {
