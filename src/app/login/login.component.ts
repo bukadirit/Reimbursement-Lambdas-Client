@@ -1,6 +1,6 @@
 import { CognitoUser } from 'amazon-cognito-identity-js';
 import { validateLogin, getErrors } from './../helpers/helper.functions';
-import { AuthService } from './../auth.service';
+import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';

@@ -1,10 +1,30 @@
-export class User{
-    constructor(
-            public email?: string,
-            public firstName?: string,
-            public id?:number,
-            public lastName?: string,
-            public password?: string,
-            public role?: string,
-            public username?: string){}
+export interface AwsUser {
+  id: any;
+  username: string;
+  attributes: {
+    email: string;
+    phone_number: string;
+    sub: string;
+  };
+}
+
+export interface AttributeForm {
+  email: string;
+  phone_number: string;
+}
+
+export class Attributes {
+  constructor(
+    public email?: string,
+    public phone_number?: string,
+    public sub?: string
+  ) {}
+}
+
+export class User {
+  constructor(
+    public id?: any,
+    public username?: string,
+    public attributes?: Attributes
+  ) {}
 }

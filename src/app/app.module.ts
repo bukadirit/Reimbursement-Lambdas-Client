@@ -1,4 +1,5 @@
-import { AuthService } from './auth.service';
+import { ReimbursementService } from './services/reimbursement.service';
+import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -30,6 +31,10 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { MatFileUploadModule } from 'mat-file-upload';
+import { CreateTicketComponent } from './create-ticket/create-ticket.component';
+import { ImageDialogComponent } from './image-dialog/image-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
+import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 
 @NgModule({
   declarations: [
@@ -37,10 +42,13 @@ import { MatFileUploadModule } from 'mat-file-upload';
     NavigationComponent,
     LoginComponent,
     PortalComponent,
+    CreateTicketComponent,
+    ImageDialogComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     FormsModule,
     AmplifyAngularModule,
     BrowserAnimationsModule,
@@ -62,8 +70,10 @@ import { MatFileUploadModule } from 'mat-file-upload';
     MatFormFieldModule,
     MatSelectModule,
     MatFileUploadModule,
+    AlifeFileToBase64Module,
   ],
-  providers: [AmplifyService, AuthService],
+  providers: [AmplifyService, AuthService, ReimbursementService],
+  entryComponents: [ImageDialogComponent],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

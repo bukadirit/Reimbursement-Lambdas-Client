@@ -22,6 +22,10 @@ export class AuthService {
     return Auth.currentAuthenticatedUser({ bypassCache: false });
   }
 
+  async getUserInfo() {
+    return Auth.currentUserInfo();
+  }
+
   async getCurrentSession() {
     return Auth.currentSession();
   }

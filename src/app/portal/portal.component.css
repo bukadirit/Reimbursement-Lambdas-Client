@@ -1,0 +1,51 @@
+.grid-container {
+  margin: 20px;
+}
+
+.mat-h1 {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: #673ab7;
+}
+
+.dashboard-card-title {
+  padding-top: 5%;
+  color: white;
+  font-size: 1.9rem;
+}
+
+.dashboard-card {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  right: 15px;
+  bottom: 15px;
+  background-color: #673ab7;
+  cursor: pointer;
+}
+
+.more-button {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+}
+
+.dashboard-card-content {
+  text-align: center;
+  color: white;
+  font-size: 1.3rem;
+  padding-top: 10%;
+}
+
+.no-border {
+  border: none;
+  outline-style: none;
+}
+
+.no-border:hover {
+  background-color: #794dc7;
+  border-style: groove;
+  border-radius: 5%;
+  transition-duration: 0.5s;
+}
