@@ -42,7 +42,6 @@ export class CreateTicketComponent implements OnInit {
       .getUserInfo()
       .then((result) => {
         this.user = result;
-        return result;
       })
       .catch((err) => console.log(err));
   }

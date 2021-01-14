@@ -1,0 +1,111 @@
+<mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  <ng-container matColumnDef="id">
+    <mat-header-cell *matHeaderCellDef> Ticket ID </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="content-color">
+      {{ element.id }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="amount">
+    <mat-header-cell *matHeaderCellDef> Amount </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="content-color">
+      {{ element.amount | currency }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="description">
+    <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="content-color">
+      {{ element.description }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="receipt">
+    <mat-header-cell *matHeaderCellDef> Receipt </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="content-color">
+      <button
+        mat-raised-button
+        color="primary"
+        *ngIf="element.receipt; else showEmpty"
+        (click)="openDialog(element.receipt)"
+      >
+        View Receipt
+      </button>
+      <ng-template #showEmpty><strong> No Receipt</strong></ng-template>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <mat-header-cell *matHeaderCellDef> Status </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="content-color">
+      {{ element.status }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="type">
+    <mat-header-cell *matHeaderCellDef> Type </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="content-color">
+      {{ element.type }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="timeSubmitted">
+    <mat-header-cell *matHeaderCellDef> Submit Time </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="content-color">
+      {{ element.timeSubmitted | date: "short" }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="author">
+    <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="content-color">
+      {{ element.authorId }}</mat-cell
+    >
+  </ng-container>
+
+  <ng-container matColumnDef="timeResolved">
+    <mat-header-cell *matHeaderCellDef> Resolve Time </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="content-color">
+      {{ element.timeResolved | date: "short" }}
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="buttons">
+    <mat-header-cell *matHeaderCellDef></mat-header-cell>
+    <mat-cell *matCellDef="let element">
+      <td *ngIf="element.status == 'Pending'">
+        <button
+          mat-raised-button
+          color="accent"
+          (click)="approveReimb(element)"
+        >
+          Approve
+        </button>
+        <button mat-raised-button color="warn" (click)="denyReimb(element)">
+          Deny
+        </button>
+      </td>
+    </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="resolver">
+    <mat-header-cell *matHeaderCellDef>Resolver </mat-header-cell>
+    <mat-cell *matCellDef="let element" class="content-color">
+      <td *ngIf="element.resolverDetails != null">
+        {{ element.resolverDetails.email }}
+      </td>
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+  <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+</mat-table>
+
+<mat-paginator
+  [pageSizeOptions]="[5, 10, 20]"
+  showFirstLastButtons
+></mat-paginator>
+
+<button mat-raised-button color="primary" routerLink="/portal">
+  Back To Portal
+</button>

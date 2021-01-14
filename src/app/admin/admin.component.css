@@ -1,0 +1,43 @@
+table {
+  width: 100%;
+}
+
+.content-color {
+  color: #673ab7;
+  padding: 2px;
+}
+
+.mat-column-description {
+  flex: 0 0 15%;
+}
+
+/* .mat-column-id {
+  flex: 0 0 4%;
+}
+
+
+.mat-column-receipt {
+  flex: 0 0 11%;
+}
+
+.mat-column-author {
+  flex: 0 0 10%;
+}
+
+.mat-column-resolver {
+  flex: 0 0 10%;
+} */
+.mat-column-amount {
+  flex: 0 0 5%;
+}
+.mat-column-status {
+  flex: 0 0 5%;
+}
+
+.mat-column-type {
+  flex: 0 0 5%;
+}
+
+.mat-column-buttons {
+  flex: 0 0 12%;
+}
