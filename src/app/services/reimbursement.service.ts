@@ -8,27 +8,29 @@ import { Reimbursement } from '../models/reimbursement';
 })
 export class ReimbursementService {
   private baseUrl: string =
-    'https://c0g0w5uhlk.execute-api.us-east-2.amazonaws.com/dev';
+    'https://za3wd6lpbg.execute-api.us-east-2.amazonaws.com/dev/reimbursements/';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };
   constructor(private http: HttpClient) {}
 
+  getForOne(id: string) {
+    return this.http.get<Reimbursement[]>(`${this.baseUrl}author/${id}`);
+  }
+
   getAll() {
-    return this.http.get<Reimbursement[]>(`${this.baseUrl}/reimbursements`);
+    return this.http.get<Reimbursement[]>(this.baseUrl);
   }
 
   postReimbursement(reimb: Reimbursement) {
-    return this.http.post(
-      `${this.baseUrl}/reimbursements`,
-      JSON.stringify(reimb)
-    );
+    return this.http.post(this.baseUrl, JSON.stringify(reimb));
+  }
+
+  postReimbursementImage(data: any, id: string) {
+    return this.http.post(`${this.baseUrl}image/${id}`, JSON.stringify(data));
   }
 
   updateReimbursement(id: number, data: any) {
-    return this.http.post(
-      `${this.baseUrl}/reimbursements/update/${id}`,
-      JSON.stringify(data)
-    );
+    return this.http.post(`${this.baseUrl}update/${id}`, JSON.stringify(data));
   }
 }

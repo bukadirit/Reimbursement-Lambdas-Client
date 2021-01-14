@@ -1,0 +1,50 @@
+table {
+  width: 100%;
+}
+
+.content-color {
+  color: #673ab7;
+  padding: 2px;
+}
+.mat-column-id {
+  flex: 0 0 10%;
+}
+.mat-column-amount {
+  flex: 0 0 5%;
+}
+
+.mat-column-description {
+  flex: 0 0 20%;
+}
+
+.mat-column-resolver {
+  flex: 0 0 10%;
+}
+
+.mat-column-receipt {
+  flex: 0 0 15%;
+}
+
+.new-button {
+  display: inline-block;
+  padding: 8px 12px;
+  cursor: pointer;
+  border-radius: 4px;
+  background-color: #673ab7;
+  font-size: 1rem;
+  color: #fff;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+input[type="file"] {
+  position: absolute;
+  z-index: -1;
+  top: 6px;
+  left: 0;
+  font-size: 15px;
+  color: rgb(153, 153, 153);
+}
+.button-wrap {
+  position: relative;
+  text-align: center;
+}

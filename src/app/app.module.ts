@@ -36,6 +36,7 @@ import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { AdminComponent } from './admin/admin.component';
+import { ViewTicketComponent } from './view-ticket/view-ticket.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { AdminComponent } from './admin/admin.component';
     CreateTicketComponent,
     ImageDialogComponent,
     AdminComponent,
+    ViewTicketComponent,
   ],
   imports: [
     BrowserModule,
