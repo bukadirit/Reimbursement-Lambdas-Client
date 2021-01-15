@@ -1,4 +1,4 @@
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, from, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Auth } from 'aws-amplify';
 import { CognitoUser } from 'amazon-cognito-identity-js';
@@ -28,6 +28,14 @@ export class AuthService {
 
   async getCurrentSession() {
     return await Auth.currentSession();
+  }
+
+  getToken() {
+    return from(
+      Auth.currentSession().then((data) => {
+        return data.getIdToken().getJwtToken();
+      })
+    );
   }
 
   async confirmNewpassword(user: any, password: string) {
