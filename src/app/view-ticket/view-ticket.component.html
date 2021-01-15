@@ -12,7 +12,6 @@
       {{ element.amount | currency }}
     </mat-cell>
   </ng-container>
-
   <ng-container matColumnDef="description">
     <mat-header-cell *matHeaderCellDef> Description </mat-header-cell>
     <mat-cell *matCellDef="let element" class="content-color">
@@ -32,7 +31,7 @@
         View Receipt
       </button>
       <ng-template #showUpload>
-        <div class="button-wrap">
+        <div class="button-wrap" *ngIf="element.status != 'Denied'">
           <label class="new-button" for="upload">Add Receipt</label>
           <input
             id="upload"
@@ -87,7 +86,8 @@
     <mat-header-cell *matHeaderCellDef>Resolver</mat-header-cell>
     <mat-cell *matCellDef="let element" class="content-color">
       <td *ngIf="element.resolverId != null">
-        {{ element.resolverDetails.email }}
+        {{ element.resolverDetails.given_name }}
+        {{ element.resolverDetails.family_name }}
       </td>
     </mat-cell>
   </ng-container>

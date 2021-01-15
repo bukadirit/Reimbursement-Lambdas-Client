@@ -19,27 +19,39 @@ export class AuthService {
   }
 
   async getAthenticatedUser() {
-    return Auth.currentAuthenticatedUser({ bypassCache: false });
+    return await Auth.currentAuthenticatedUser({ bypassCache: true });
   }
 
   async getUserInfo() {
-    return Auth.currentUserInfo();
+    return await Auth.currentUserInfo();
   }
 
   async getCurrentSession() {
-    return Auth.currentSession();
+    return await Auth.currentSession();
   }
 
   async confirmNewpassword(user: any, password: string) {
-    return Auth.completeNewPassword(user, password);
+    return await Auth.completeNewPassword(user, password);
+  }
+
+  async updateAttributes(details: any) {
+    const user = await Auth.currentAuthenticatedUser();
+    return await Auth.updateUserAttributes(user, details);
   }
 
   checkLoginStatus(): boolean {
-    return localStorage.getItem(
-      'CognitoIdentityServiceProvider.7bpbkecl8buj86lq97t3b1vudd.htrawally.idToken'
-    ) == null
-      ? false
-      : true;
+    const session = this.getUserInfo()
+      .then((result) => {
+        if (result) {
+          return this.loginStatus.next(true);
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+        return this.loginStatus.next(false);
+      });
+
+    return;
   }
 
   get isLoggesIn() {

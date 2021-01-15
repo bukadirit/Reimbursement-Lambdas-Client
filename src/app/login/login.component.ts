@@ -1,5 +1,6 @@
 import { CognitoUser } from 'amazon-cognito-identity-js';
-import { validateLogin, getErrors } from './../helpers/helper.functions';
+//prettier-ignore
+import { validateLogin, getErrors, validateDetails } from './../helpers/helper.functions';
 import { AuthService } from '../services/auth.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
@@ -15,6 +16,9 @@ export class LoginComponent implements OnInit {
   public password: string;
   public newPassword: string;
   public requiresNewPassword: boolean = false;
+  public firstName: string;
+  public lastName: string;
+  public preferredName: String;
   private user: CognitoUser;
   constructor(
     private router: Router,
@@ -46,15 +50,33 @@ export class LoginComponent implements OnInit {
   }
 
   async doConfirm() {
-    await this.service
-      .confirmNewpassword(this.user, this.newPassword)
-      .then((success) => {
-        this.router.navigate(['portal']);
-        this.service.loginStatus.next(true);
-      })
-      .catch((error) => {
-        this.openSnackBar(error.message);
-      });
+    if (validateDetails(this.firstName, this.lastName, this.newPassword)) {
+      const userDetails = {
+        given_name: this.firstName,
+        family_name: this.lastName,
+        nickname: this.preferredName,
+      };
+
+      await this.service
+        .confirmNewpassword(this.user, this.newPassword)
+        .catch((error) => {
+          this.openSnackBar(error.message);
+        });
+
+      await this.service
+        .updateAttributes(userDetails)
+        .then((success) => {
+          this.router.navigate(['portal']);
+          this.service.loginStatus.next(true);
+        })
+        .catch((error) => {
+          this.openSnackBar(error.message);
+        });
+    } else {
+      this.openSnackBar(
+        'Please Fillout All Required Fileds. Password Length Must Be At Least 8 Characters.'
+      );
+    }
   }
 
   openSnackBar(msg: string) {

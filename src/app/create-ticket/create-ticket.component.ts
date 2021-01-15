@@ -114,7 +114,9 @@ export class CreateTicketComponent implements OnInit {
       this.user.attributes.sub,
       new Attributes(
         this.user.attributes.email,
-        this.user.attributes.phone_number
+        this.user.attributes.phone_number,
+        this.user.attributes.given_name,
+        this.user.attributes.family_name
       ),
       null,
       null

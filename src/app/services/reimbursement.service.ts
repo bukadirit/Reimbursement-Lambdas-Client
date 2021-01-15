@@ -8,7 +8,7 @@ import { Reimbursement } from '../models/reimbursement';
 })
 export class ReimbursementService {
   private baseUrl: string =
-    'https://za3wd6lpbg.execute-api.us-east-2.amazonaws.com/dev/reimbursements/';
+    'https://54j89irrs0.execute-api.us-east-2.amazonaws.com/dev/reimbursements/';
   httpOptions = {
     headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
   };

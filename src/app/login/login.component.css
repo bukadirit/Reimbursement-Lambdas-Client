@@ -23,9 +23,29 @@
   margin-bottom: auto;
 }
 
-#form-title {
+.reimb-form {
+  width: 70%;
+  height: 40%;
+  margin: auto;
+  margin-top: 10%;
+  overflow: auto;
+}
+
+.submit-button {
+  width: 100%;
+}
+
+.form-title {
   text-align: center;
   font-size: 1.8rem;
   font-weight: 500;
   color: #673ab7;
+}
+
+.first-input {
+  width: 100%;
+}
+
+.second-input {
+  width: 95%;
 }

@@ -1,0 +1,44 @@
+<mat-card id="card" class="profile-form">
+  <mat-card-title class="card-title"> Profile </mat-card-title>
+  <mat-card-content class="card-content">
+    <mat-grid-list cols="2" rowHeight="70px">
+      <mat-grid-tile colspan="2">
+        <span>ID: {{ user.attributes.sub }}</span>
+      </mat-grid-tile>
+      <mat-grid-tile>
+        <span class="text-to-left"
+          >Email: {{ user.attributes.email | titlecase }}</span
+        >
+      </mat-grid-tile>
+      <mat-grid-tile class="text-to-left">
+        <span class="text-to-left"
+          >Phone: {{ user.attributes.phone_number }}</span
+        >
+      </mat-grid-tile>
+      <mat-grid-tile class="text-to-left">
+        <span class="text-to-left"
+          >First Name: {{ user.attributes.given_name | titlecase }}</span
+        >
+      </mat-grid-tile>
+      <mat-grid-tile class="text-to-left">
+        <span class="text-to-left"
+          >Last Name: {{ user.attributes.family_name | titlecase }}</span
+        >
+      </mat-grid-tile>
+      <mat-grid-tile class="text-to-left">
+        <span class="text-to-left"
+          >Nick Name: {{ user.attributes.nickname | titlecase }}</span
+        >
+      </mat-grid-tile>
+      <mat-grid-tile class="text-to-left">
+        <span class="text-to-left"
+          >Username: {{ user.username | titlecase }}</span
+        >
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>
+
+<button mat-raised-button color="primary" routerLink="/portal">
+  Back To Portal
+</button>

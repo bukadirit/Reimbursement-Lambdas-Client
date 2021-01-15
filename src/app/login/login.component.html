@@ -4,7 +4,7 @@
 >
   <form (submit)="doSubmit()">
     <div>
-      <div id="form-title">Log In</div>
+      <div class="form-title">Log In</div>
       <mat-form-field class="inputs">
         <mat-label>Username</mat-label>
         <input
@@ -46,29 +46,88 @@
 </mat-card>
 
 <ng-template #confirmPassword>
-  <mat-card class="login-form-confirm">
-    <form (submit)="doConfirm()">
-      <div>
-        <div id="form-title">Enter Your New Password</div>
-        <mat-form-field class="inputs">
-          <mat-label>Enter New Password</mat-label>
-          <input
-            matInput
-            #newPass
-            maxlength="50"
-            [(ngModel)]="newPassword"
-            id="newPassword"
-            type="text"
-            name="newPassword"
-            required
-          />
-          <mat-hint align="start">Do Not Share Your Password!</mat-hint>
-          <mat-hint align="end">{{ newPass.value.length }} / 50</mat-hint>
-        </mat-form-field>
-      </div>
-      <button mat-raised-button color="primary" class="submit-button">
-        Confirm New Password
-      </button>
-    </form>
+  <mat-card id="card" class="reimb-form">
+    <mat-card-title class="form-title">
+      Enter Your New Password And Details
+    </mat-card-title>
+    <mat-card-content>
+      <mat-grid-list cols="2" rowHeight="110px">
+        <mat-grid-tile>
+          <mat-form-field class="first-input">
+            <mat-label>Enter New Password</mat-label>
+            <input
+              matInput
+              #newPass
+              maxlength="50"
+              minlength="8"
+              [(ngModel)]="newPassword"
+              id="newPassword"
+              type="password"
+              name="newPassword"
+              required
+            />
+            <mat-hint align="start">Do Not Share Your Password!</mat-hint>
+            <mat-hint align="end">{{ newPass.value.length }} / 50</mat-hint>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field class="second-input">
+            <mat-label>Preferred Name</mat-label>
+            <input
+              matInput
+              #message
+              maxlength="50"
+              [(ngModel)]="preferredName"
+              name="preferredName"
+              id="preferredName"
+              type="text"
+            />
+            <mat-hint align="end">{{ message.value.length }} / 50</mat-hint>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field class="first-input">
+            <mat-label>First Name</mat-label>
+            <input
+              matInput
+              #message
+              maxlength="50"
+              [(ngModel)]="firstName"
+              name="firstName"
+              id="firstName"
+              type="text"
+              required
+            />
+            <mat-hint align="end">{{ message.value.length }} / 50</mat-hint>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-form-field class="second-input">
+            <mat-label>Last Name</mat-label>
+            <input
+              matInput
+              #message
+              maxlength="50"
+              [(ngModel)]="lastName"
+              name="lastName"
+              id="lastName"
+              type="text"
+              required
+            />
+            <mat-hint align="end">{{ message.value.length }} / 50</mat-hint>
+          </mat-form-field>
+        </mat-grid-tile>
+        <mat-grid-tile colspan="2">
+          <button
+            mat-raised-button
+            color="primary"
+            class="submit-button"
+            (click)="doConfirm()"
+          >
+            Confirm Details
+          </button>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
   </mat-card>
 </ng-template>

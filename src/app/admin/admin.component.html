@@ -59,8 +59,9 @@
   <ng-container matColumnDef="author">
     <mat-header-cell *matHeaderCellDef> Author </mat-header-cell>
     <mat-cell *matCellDef="let element" class="content-color">
-      {{ element.authorId }}</mat-cell
-    >
+      {{ element.authorDetails.given_name }}
+      {{ element.authorDetails.family_name }}
+    </mat-cell>
   </ng-container>
 
   <ng-container matColumnDef="timeResolved">
@@ -92,7 +93,8 @@
     <mat-header-cell *matHeaderCellDef>Resolver </mat-header-cell>
     <mat-cell *matCellDef="let element" class="content-color">
       <td *ngIf="element.resolverDetails != null">
-        {{ element.resolverDetails.email }}
+        {{ element.resolverDetails.given_name }}
+        {{ element.resolverDetails.family_name }}
       </td>
     </mat-cell>
   </ng-container>

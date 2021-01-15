@@ -1,3 +1,4 @@
+import { ProfileComponent } from './profile/profile.component';
 import { CreateTicketComponent } from './create-ticket/create-ticket.component';
 import { PortalComponent } from './portal/portal.component';
 import { LoginComponent } from './login/login.component';
@@ -8,6 +9,7 @@ import { ViewTicketComponent } from './view-ticket/view-ticket.component';
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
+  { path: 'profile', component: ProfileComponent },
   { path: 'portal', component: PortalComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'create-ticket', component: CreateTicketComponent },

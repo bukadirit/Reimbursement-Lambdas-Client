@@ -1,0 +1,24 @@
+.profile-form {
+  width: 70%;
+  height: 40%;
+  margin: auto;
+  margin-top: 10%;
+  overflow: auto;
+}
+
+.card-title {
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: 500;
+  color: #673ab7;
+}
+
+.card-content {
+  color: #673ab7;
+  font-size: 1rem;
+}
+
+.text-to-left {
+  text-align: left;
+  width: 75%;
+}

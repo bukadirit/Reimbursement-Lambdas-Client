@@ -64,6 +64,8 @@ export class AdminComponent implements OnInit {
       resolverDetails: {
         email: this.user.attributes.email,
         phone_number: this.user.attributes.phone_number,
+        given_name: this.user.attributes.given_name,
+        family_name: this.user.attributes.family_name,
       },
     };
     this.service
@@ -80,6 +82,8 @@ export class AdminComponent implements OnInit {
       resolverDetails: {
         email: this.user.attributes.email,
         phone_number: this.user.attributes.phone_number,
+        given_name: this.user.attributes.given_name,
+        family_name: this.user.attributes.family_name,
       },
     };
     this.service

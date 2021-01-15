@@ -44,3 +44,16 @@ export const validateReimbForm = (reimb: Reimbursement) => {
   }
   return false;
 };
+
+export const validateDetails = (
+  first: string,
+  last: string,
+  newPass: string
+) => {
+  if (first && last && newPass) {
+    if (first.length > 0 && last.length > 0 && newPass.length >= 8) {
+      return true;
+    }
+  }
+  return false;
+};
