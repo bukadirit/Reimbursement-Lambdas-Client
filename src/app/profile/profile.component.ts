@@ -14,7 +14,9 @@ export class ProfileComponent implements OnInit {
   ngOnInit(): void {
     this.authService
       .getUserInfo()
-      .then((result) => (this.user = result))
+      .then((result) => {
+        this.user = result;
+      })
       .catch((error) => console.log(error));
   }
 }

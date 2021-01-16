@@ -34,6 +34,7 @@ export class NavigationComponent implements OnInit {
     try {
       await this.service.signOut();
       this.service.loginStatus.next(false);
+      this.service.adminStatus.next(false);
       this.router.navigate(['']);
       this.openSnackBar('You Have Successfully Logout!');
     } catch (error) {

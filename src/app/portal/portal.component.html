@@ -60,6 +60,7 @@
       rowspan="1"
       routerLink="/admin"
       class="no-border"
+      *ngIf="adminStatus$ | async"
     >
       <mat-card class="dashboard-card">
         <mat-card-header>

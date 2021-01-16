@@ -1,13 +1,13 @@
 import { BehaviorSubject, from, Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Auth } from 'aws-amplify';
-import { CognitoUser } from 'amazon-cognito-identity-js';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
   public loginStatus = new BehaviorSubject<boolean>(this.checkLoginStatus());
+  public adminStatus = new BehaviorSubject<boolean>(this.checkAdminStatus());
   constructor() {}
 
   async signIn(username: string, password: string) {
@@ -38,6 +38,12 @@ export class AuthService {
     );
   }
 
+  async isAdmin() {
+    return await Auth.currentSession().then((result) => {
+      return result.getIdToken().payload['cognito:groups'];
+    });
+  }
+
   async confirmNewpassword(user: any, password: string) {
     return await Auth.completeNewPassword(user, password);
   }
@@ -62,7 +68,28 @@ export class AuthService {
     return;
   }
 
+  checkAdminStatus(): boolean {
+    this.isAdmin()
+      .then((roles) => {
+        for (let role of roles) {
+          if (role == 'Admin') {
+            return this.adminStatus.next(true);
+          }
+        }
+        return this.adminStatus.next(false);
+      })
+      .catch((error) => {
+        console.log(error);
+        return this.adminStatus.next(false);
+      });
+    return;
+  }
+
   get isLoggesIn() {
     return this.loginStatus.asObservable();
+  }
+
+  get isAdministrator() {
+    return this.adminStatus.asObservable();
   }
 }

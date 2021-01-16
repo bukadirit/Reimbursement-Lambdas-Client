@@ -1,3 +1,4 @@
+import { AdminGuard as AdminGuard } from './services/admin-guard.guard';
 import { ReimbursementService } from './services/reimbursement.service';
 import { AuthService } from './services/auth.service';
 import { BrowserModule } from '@angular/platform-browser';
@@ -38,6 +39,7 @@ import { AlifeFileToBase64Module } from 'alife-file-to-base64';
 import { AdminComponent } from './admin/admin.component';
 import { ViewTicketComponent } from './view-ticket/view-ticket.component';
 import { ProfileComponent } from './profile/profile.component';
+import { AuthGuard } from './services/auth-guard.service';
 
 @NgModule({
   declarations: [
@@ -78,7 +80,13 @@ import { ProfileComponent } from './profile/profile.component';
     MatFileUploadModule,
     AlifeFileToBase64Module,
   ],
-  providers: [AmplifyService, AuthService, ReimbursementService],
+  providers: [
+    AmplifyService,
+    AuthService,
+    ReimbursementService,
+    AuthGuard,
+    AdminGuard,
+  ],
   entryComponents: [ImageDialogComponent],
   bootstrap: [AppComponent],
 })

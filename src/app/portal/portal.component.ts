@@ -3,6 +3,7 @@ import { AuthService } from '../services/auth.service';
 import { Component, OnInit } from '@angular/core';
 import { map } from 'rxjs/operators';
 import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-portal',
@@ -11,7 +12,7 @@ import { Breakpoints, BreakpointObserver } from '@angular/cdk/layout';
 })
 export class PortalComponent implements OnInit {
   public user: AwsUser;
-  private attributes: any;
+  public adminStatus$: Observable<boolean>;
   cards = this.breakpointObserver.observe(Breakpoints.Handset).pipe(
     map(({ matches }) => {
       if (matches) {
@@ -38,6 +39,8 @@ export class PortalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.adminStatus$ = this.service.isAdministrator;
+
     this.service
       .getUserInfo()
       .then((result) => {

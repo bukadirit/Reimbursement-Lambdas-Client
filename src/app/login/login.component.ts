@@ -39,6 +39,7 @@ export class LoginComponent implements OnInit {
         }
         this.router.navigate(['portal']);
         this.service.loginStatus.next(true);
+        this.service.checkAdminStatus();
       } catch (error) {
         this.openSnackBar(error.message);
         this.router.navigate(['']);
@@ -68,6 +69,7 @@ export class LoginComponent implements OnInit {
         .then((success) => {
           this.router.navigate(['portal']);
           this.service.loginStatus.next(true);
+          this.service.checkAdminStatus();
         })
         .catch((error) => {
           this.openSnackBar(error.message);
