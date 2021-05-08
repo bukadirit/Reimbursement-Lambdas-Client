@@ -11,7 +11,7 @@ export class ReimbursementService {
   private httpOptions: any;
   private token: string = '';
   private baseUrl: string =
-    'https://54j89irrs0.execute-api.us-east-2.amazonaws.com/prod/reimbursements/';
+    'https://6rbuibbn4d.execute-api.us-east-2.amazonaws.com/prod/reimbursements/';
 
   constructor(private http: HttpClient, private authService: AuthService) {
     this.authService.getToken().subscribe((data) => {
