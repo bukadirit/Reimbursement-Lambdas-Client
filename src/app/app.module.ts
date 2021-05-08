@@ -31,7 +31,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { MatFileUploadModule } from 'mat-file-upload';
 import { CreateTicketComponent } from './create-ticket/create-ticket.component';
 import { ImageDialogComponent } from './image-dialog/image-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
@@ -77,7 +76,6 @@ import { AuthGuard } from './services/auth-guard.service';
     MatDialogModule,
     MatFormFieldModule,
     MatSelectModule,
-    MatFileUploadModule,
     AlifeFileToBase64Module,
   ],
   providers: [

@@ -1,4 +1,4 @@
-<ng-tempplate *ngIf="data != null; else confirmDiv">
+<div *ngIf="data.name != null; else confirmDiv">
   <h1 mat-dialog-title class="text-color">Reciept</h1>
   <div mat-dialog-content>
     <img [src]="data.name" class="cover" />
@@ -6,7 +6,7 @@
   <div mat-dialog-actions>
     <button mat-dialog-close mat-raised-button color="primary">Close</button>
   </div>
-</ng-tempplate>
+</div>
 
 <ng-template #confirmDiv>
   <h1 mat-dialog-title class="text-color" mat-typography>
